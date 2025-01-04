@@ -1,0 +1,50 @@
+<div class="signup-container">
+    <form class="signup-form" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+      <h2>Sign Up</h2>
+      
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput type="text" placeholder="Enter your username" required name="username" ngModel #username="ngModel" />
+        <mat-error *ngIf="username.errors?.['required'] && username.touched">Username is required!</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Enter your email" required email name="email" ngModel  #email="ngModel" [pattern]="emailPattern"/>
+        <mat-error *ngIf="email.errors?.['required'] && email.touched">Email is required!</mat-error>
+        <mat-error *ngIf="email.errors?.['pattern'] && email.touched">Email must include "&#64;" and ".com"!</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Enter your password"
+          required
+          minlength="8"
+          name="password"
+          ngModel
+          #password="ngModel"
+        />
+        <mat-error *ngIf="password.errors?.['required'] && password.touched">Password is required!</mat-error>
+        <mat-error *ngIf="password.errors?.['minlength'] && password.touched">Password must be at least 8 characters long!</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" placeholder="Confirm your password" required name="confirmePassword" ngModel #confirmePassword="ngModel" />
+        <mat-error *ngIf="confirmePassword.errors?.['required'] && confirmePassword.touched">Confirm password is required!</mat-error>
+      </mat-form-field>
+
+
+      <button mat-raised-button color="primary" type="submit" >Sign Up</button>
+      <p class="login-link">
+        Already have an account? <a routerLink="/login" routerLinkActive="active">Log In</a>
+      </p>
+    </form>
+  </div>
+<router-outlet></router-outlet>

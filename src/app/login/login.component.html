@@ -1,0 +1,25 @@
+<div class="login-container">
+  <div class="login-form">
+    <h2>Login</h2>
+    <form #loginForm="ngForm"  (onSubmit)="onSubmit(loginForm)">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Enter your email" required  name="email" ngModel #email="ngModel">
+        <mat-error *ngIf="email.errors?.['required'] && email.touched">Email is required!</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="Enter your password" required name="password" ngModel #password="ngModel">
+        <mat-error *ngIf="password.errors?.['required'] && password.touched">Password is required!</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit">Login</button>
+      <p class="signup-link">
+        Don't have an account? 
+        <a routerLink="/signup" routerLinkActive="active">Sign up</a>
+        <router-outlet></router-outlet>
+      </p>
+    </form>
+  </div>
+</div>
